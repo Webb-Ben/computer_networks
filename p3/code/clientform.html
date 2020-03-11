@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+            <title>Embedded HTML Subnet Calculator</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="author" content="RB">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+                    <link rel="stylesheet" type="text/css" href="style.css">
+                        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <noscript> Your browser does not support JavaScript </noscript>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Subnet Calculator</h1>
+	
+		  <p>Enter any IP address in the subnet and the prefix length.</p>
+						
+				<form class="well">
+                
+				 <legend>Subnet Prefix</legend>
+				 <div class="control-group">
+				 <label class="control-label">IP address / prefix length</label>
+				 <div class="controls">
+				 <input type="number"	class="span1" id="b1" min="0" max="255" value="0" > .
+				 <input type="number"	class="span1" id="b2" min="0" max="255" value="0" > .
+				 <input type="number"	class="span1" id="b3" min="0" max="255" value="0" > .
+				 <input type="number"	class="span1" id="b4" min="0" max="255" value="0" > /
+				 <input type="number"	class="span1" id="preflen" min="0" max="30" value="22" >				 					 
+				 <p class="help-block">Enter values between 0 and 255 for the bytes of the IP 
+					 address and between 0 and 30 for the prefix.</p>
+			   </div>
+				 </div>
+                
+				 <p>
+ 					<button class="btn btn-primary" id = "button">Submit</button>
+				 </p>
+				</form>
+									
+				<div class="well" id="results" style="display:none;" >
+					<legend>Results</legend>
+	        <table class="table-bordered">
+	          <thead>
+	            <tr><th>Description</th><th>Value</th></tr>
+	          </thead>
+	          <tbody>						
+							<tr><td>Subnet address</td><td id="subnet"> </td></tr>
+							<tr><td>First host address</td><td id="first"> </td></tr>
+							<tr><td>Entered address</td><td id="entered"> </td></tr>
+							<tr><td>Last host address</td><td id="last"> </td></tr>
+							<tr><td>Subnet broadcast address</td><td id="broadcast"> </td></tr>
+							<tr><td>Netmask</td><td id="netmask"> </td></tr>
+	          </tbody>
+			    </table>  
+				</div>
+		</div>
+        <script>
+            document.querySelector("button").addEventListener("click", function(event){
+                event.preventDefault();
+                var prefix = (0xFFFFFFFF ^ (1 << (32 - document.getElementById('preflen').value)) - 1);
+                var ma = (prefix >> 24) & 0xFF;
+                var mb = (prefix >> 16) & 0xFF;
+                var mc = (prefix >> 8 ) & 0xFF;
+                var md = (prefix) & 0xFF;
+                var a = document.getElementById("b1").value;
+                var b = document.getElementById("b2").value;
+                var c = document.getElementById("b3").value;
+                var d = document.getElementById("b4").value;
+                document.getElementById("subnet").innerHTML = (a & ma) + "." + (b & mb) + "." + (c & mc) + "." + (d & md);
+                document.getElementById("first").innerHTML = (a & ma) + "." +  (b & mb) + "." + (c & mc) + "." + ((d & md) + 1);
+                document.getElementById("entered").innerHTML = a + "." + b + "." + c + "." + d;
+                document.getElementById("last").innerHTML = ((a & ma)|(255^ma)) + "." + ((b & mb)|(255^mb)) + "." + ((c & mc)|(255^ mc)) + "." + (((d & md)|(255^ md)) - 1);
+                document.getElementById("broadcast").innerHTML =  ((a & ma)|(255^ma)) + "." + ((b & mb)|(255^mb)) + "." + ((c & mc)|(255^ mc)) + "." + ((d & md)|(255^ md));
+                document.getElementById("netmask").innerHTML = ( ma + "." + mb + "." + mc + "." + md);
+                document.getElementById("results").style.display = "block";
+                                                              }, false);
+        </script>
+        
+	</body>
+</html>

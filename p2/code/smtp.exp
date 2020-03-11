@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn nc localhost 25
+expect "220 gloin.cs.colby.edu ESMTP Postfix (Ubuntu)\r"
+send -- "HELO gloin.cs.colby.edu\r"
+expect "250 gloin.cs.colby.edu\r"
+send -- "mail from: cs331@gloin.cs.colby.edu\r"
+expect "250 2.1.0 Ok\r"
+send -- "rcpt to: bmwebb20@gloin.cs.colby.edu\r"
+expect "250 2.1.5 Ok\r"
+send -- "data\r"
+expect "354 End data with <CR><LF>.<CR><LF>\r"
+send -- "subject: eMailHeader\r"
+send -- "body of the email\r"
+send -- ".\r"
+expect "250 2.0.0 Ok: queued as *\r"
+send -- "quit\r"
+expect eof

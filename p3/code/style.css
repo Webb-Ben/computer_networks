@@ -1,0 +1,102 @@
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(52,51,52);
+        background: rgb(52,51,52);
+        border: 0;
+        color: rgb(218,218,218);
+        font-family: "SF Mono Medium";
+        font-size: system-ui;
+        font-weight: system-ui;
+        border-style: none;
+        shadow: none;
+/*        font-family: system-ui;*/
+    }
+    a:link {
+        color: #e38daf;
+        text-decoration: none;
+    }
+    a:visited {
+        color: #9c96e9;
+    }
+    input[type=number]{
+        background-color: rgb(52,51,52);
+        background: rgb(52,51,52);
+        color: rgb(255,255,255);
+        width: 10%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-style: none;
+        border: none;
+        text-align: center;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: rgb(255,255,255);
+        background: rgb(255,255,255);
+        border: 0;
+        color: rgb(32,32,32);
+        font-family: "SF Mono Medium";
+        font-size: system-ui;
+        font-weight: system-ui;
+        border-style: none;
+        shadow: none;
+    }
+    a:link {
+        color: #b43222;
+        text-decoration: none;
+    }
+    a:visited {
+        color: #963fa0;
+    }
+    input[type=number]{
+        background-color: rgb(255,255,255);
+        background: rgb(255,255,255);
+        width: 5%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-style: none;
+        border: none;
+        text-align: center;
+    }
+}
+
+.box:hover .inner_box {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+head {
+    text-align: center;
+}
+
+input[type=number] {
+    width: 5%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-style: none;
+    border: none;
+    text-align: center;
+
+}
+
+form[class=well]{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-style: none;
+    border: none;
+    text-align: left;
+}
+
+
+table[class=table-bordered]{    
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-style: none;
+    border: none;
+    text-align: left;
+}
